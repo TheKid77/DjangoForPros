@@ -9,3 +9,5 @@ Books can be added via the Django Admin Panel
 Main Page : localhost:8000
 Django Admin : localhost:8000/admin-for-django
 
+In order for password reset emails to work, a valid SENDGRID_API_KEY needs to be set locally
+
