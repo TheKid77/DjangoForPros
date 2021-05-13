@@ -11,13 +11,13 @@ class BookListView(LoginRequiredMixin, ListView):
 
 class BookDetailView(
         LoginRequiredMixin, 
-        PermissionRequiredMixin,
+#        PermissionRequiredMixin,
         DetailView):
     model = Book
     context_object_name = 'book'
     template_name = 'books/book_detail.html'
     login_url = 'account_login'
-    permission_required = 'books.special_status'
+    # permission_required = 'special_status'
 
 class SearchResultsListView(ListView):
     model = Book
