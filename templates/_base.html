@@ -18,7 +18,11 @@
       font-weight-normal">Andy's Bookstore</a>
       <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="{% url 'book_list' %}">Books</a>
-        <a class="p-2 text-dark" href="{% url 'about' %}">About</a>
+        {% if user.is_authenticated %}
+          <a class="p-2 text-dark" href="{% url 'add_book' %}">Add New Book</a>
+          <a class="p-2 text-dark" href="{% url 'add_review' %}">Add a Book Review</a>
+        {% endif %} 
+          <a class="p-2 text-dark" href="{% url 'about' %}">About</a>
         {% if user.is_authenticated %}
           <a class="p-2 text-dark" href="{% url 'account_change_password' %}">Change Password</a>
           <a class="p-2 text-dark" href="{% url 'account_logout' %}">Log Out</a>
@@ -36,7 +40,7 @@
     <br />
     {% if user.is_authenticated %}
       <div class="book-image">
-        Hi {{ user.email }}!
+        Hi {{ user.username }}!
       </div>
     {% endif %}
     <br /><br />
@@ -45,6 +49,12 @@
   </div>
   <!-- JavaScript -->
   <!-- JS, Popper.js, and jQuery -->
+  {% if deleted_book %}
+    <script>alert('{{deleted_book.title}} has been deleted')</script>
+  {% endif %}
+  {% if deleted_review %}
+    <script>alert('Review for {{deleted_review.book}} has been deleted')</script>
+  {% endif %}
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
