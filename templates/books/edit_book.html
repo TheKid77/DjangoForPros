@@ -1,0 +1,17 @@
+<!-- templates/edit_book.html-->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Book{% endblock title %}
+
+{% block content %}
+
+  <p>Edit Book:</p>
+
+  <form action="{% url 'edit_book' book.id %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }} 
+    <button class="btn btn-success" name=submit">Save Changes</button>
+  </form>
+
+{% endblock content %}

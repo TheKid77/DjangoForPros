@@ -4,9 +4,19 @@
 {% block title %}Books{% endblock title %}
 
 {% block content %}
-  {% for book in book_list %} 
-    <div>
-      <h2><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h2>
+  <div class="container">
+    <div class="row">
+    {% for book in book_list %} 
+    <div class="col col-md-4 col-sm-6 text-center border">
+      <h2><a href="{{ book.get_absolute_url }}">
+        {{ book.title }} <br /><br />
+        {{ book.author }} <br /><br />
+        {% if book.cover %}
+          <img class="bookcover" src="{{ book.cover.url}}" alt="{{ book.title }}" width="200px">      
+        {% endif %}   
+      </a></h2>
     </div>
   {% endfor %}   
-{% endblock content %} 
+  </div>
+  </div>
+  {% endblock content %} 
